@@ -109,8 +109,8 @@ a:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(21, 82, 99, 0.65)), to(rgba(21, 82, 99, 0.55)));
-  background: linear-gradient(to right, rgba(21, 82, 99, 0.65), rgba(21, 82, 99, 0.55));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(4, 8, 69, 0.65)), to(rgba(6, 2, 54, 0.55)));
+  background: linear-gradient(to right, rgba(2, 12, 70, 0.65), rgba(11, 1, 59, 0.55));
 }
 
 .sub_page .hero_area {
