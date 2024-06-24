@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<!-- Page Header Start -->
+<div class="p-3 mb-4 bg-dark rounded-3">
+    <div class="container-fluid py-2">
+      <h1 class="text-white display-5 fw-bold text-uppercase">Auto Express Trouver <br> La Voiture Qu'il Vous Faut</h1>
+      <p class="text-white col-md-9 fs-6">
+        Bienvenue chez Auto Express, votre partenaire de confiance pour la location 
+        et la vente de voitures. Située à Conakry, notre agence offre une large gamme 
+        de véhicules adaptés à tous vos besoins, qu'il s'agisse de voyages d'affaires, 
+        de vacances ou de trajets quotidiens. Grâce à notre plateforme web innovante, 
+        vous pouvez facilement réserver et gérer vos transactions en ligne. 
+        Notre engagement envers la satisfaction client, la transparence et la sécurité 
+        nous distingue. Rejoignez-nous et découvrez une nouvelle manière de louer et 
+        acheter des voitures.
+      </p>
+      <a class="btn btn-primary btn-lg" href="{% url 'contact' %}">Nous Joindre</a>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- about section -->
+<section class="">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="color: darkblue; font-weight: bold;">
+              Nous vous aidons à trouver votre voiture
+            </h3>
+            <p>
+              Il existe de nombreuses variantes de passages du Lorem Ipsum disponibles, mais la majorité ont subi des altérations sous une forme ou une autre, par injection d'humour ou par des mots aléatoires qui ne semblent même pas légèrement crédibles. Si vous comptez utiliser un passage, assurez-vous qu'il n'y a rien au milieu du texte.
+            </p>
+            <p>
+              Nous ne pourrons peut-être pas repousser l'exercice de la haine envers ceux qui procurent des plaisirs, mais cela sera résolu en rejetant les fonctions corrompues dont nous exerçons les autres. Pour nous, n'importe lequel de tous semble opportun.
+            </p>
+            
+        </div>
+        <div class="col-6 ">
+            <img class="w-100" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2019_GMC_Terrain_Denali%2C_front_2.29.20.jpg/1200px-2019_GMC_Terrain_Denali%2C_front_2.29.20.jpg" alt="">
+        </div>
+    </div>
+</section>
+<!-- end about section -->
+
+<div class="card my-3">
+    <div class="row g-0">
+        <div class="col-md-6">
+            <img src="https://www.bmw.fr/content/dam/bmw/common/all-models/i-series/iX1/2022/Navigation/bmw-xseries-iX1-modellfinder.png" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 style="color: darkblue; font-weight: bold;">
+                    Pourquoi Nous Choisir ?
+                </h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Experience</li>
+                    <li class="list-group-item">Qualité</li>
+                    <li class="list-group-item">Vente</li>
+                    <li class="list-group-item">Location</li>
+                    <li class="list-group-item">Reparation</li>
+                    <li class="list-group-item">Fiabilité</li>
+                    <li class="list-group-item">24H / 24H</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+{% endblock %}

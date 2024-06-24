@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<h1>Catégorie {{ categorie.nom}}</h1>
+
+<div class="row">
+    {% for voiture in  liste_voiture %}
+    <div class="col-md-3 my-2">
+        <div class="card">
+            <img src="{{voiture.image.url}}" class="card-img-top" width="300px" height="180px" alt="image d'une voiture">
+            <div class="card-body text-center">
+              <div class="card-title fw-bold">{{ voiture.marque }}</div>
+              <div class="card-title text-primary">prix location : {{ voiture.prix_location }} FG</div>
+              <div class="card-title text-danger">prix vente : {{ voiture.prix_vente }} FG</div>
+              
+              <a href="{% url 'detail' voiture.id %}" class="btn btn-primary">En savoir plus</a>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock %}

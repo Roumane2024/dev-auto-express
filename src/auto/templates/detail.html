@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<div class="card mb-3 mx-auto mt-4 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style="width: 80%;">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img src="{{voiture.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div  class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title fw-bold fs-3 text-primary text-center">{{voiture.marque}}</h5>
+          <p class="card-text">Année de fabrication : <span class="fw-bold"> {{voiture.annee_fabrication}} </span></p>
+          <p class="card-text">Type de carburant : <span class="fw-bold">  {{voiture.type_de_carburant}}  </span></p>
+          <p class="card-text">Couleur : {{voiture.couleur}}  </span></p>
+          <button class="btn btn-outline-danger">Etat : <span class="fw-bold">  {{voiture.etat}} </button>
+          <p class="card-text">prix de location :  {{voiture.prix_location}} GNF </p>
+          <p class="card-text">Prix de vente :  {{voiture.prix_vente}} GNF </p>
+          <a class="btn btn-primary" href="{% url 'location' voiture.id %}">Réserver</a>
+          <a class="btn btn-warning" href="{% url 'achat' voiture.id %}">Acheter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+
+<div>
+    <div class="card mt-4 mb-2" style="background: linear-gradient(#1a3138, #9494e6);">
+        <h1 class="text-white text-center fw-bold">Formulaire de location {{voiture.marque}}</h1>
+    </div>
+    <form style="background-color: #0707525c;" class="row g-3 my-3 p-3" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="col-md-6">
+          <label for="nom" class="form-label fw-bold">Nom</label>
+          <input required type="text" class="form-control" id="nom" name="nom" placeholder="veillez saisir votre nom">
+        </div>
+        <div class="col-md-6">
+          <label for="prenom" class="form-label fw-bold">Prenom</label>
+          <input required type="text" class="form-control" id="prenom" name="prenom" placeholder="veillez saisir votre prenom">
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label fw-bold">Email</label>
+          <input required type="text" class="form-control" id="email" name="email"  placeholder="veillez saisir votre email">
+        </div>
+        <div class="col-md-6">
+          <label for="phone" class="form-label fw-bold">Téléphone</label>
+          <input required type="text" class="form-control" id="phone" name="phone"  placeholder="veillez saisir votre numero de téléphone">
+        </div>
+        <div class="col-md-6">
+          <label for="adresse" class="form-label fw-bold">Adresse</label>
+          <input required type="text" class="form-control" id="adresse" name="adresse"  placeholder="veillez saisir votre adresse">
+        </div>
+        <div class="col-md-4">
+          <label for="ville" class="form-label fw-bold">Ville</label>
+          <select required id="ville" name="ville" class="form-select">
+            <option disabled>Selectionnée une ville</option>
+            <option>Conakry</option>
+            <option>Kindia</option>
+            <option>Mamou</option>
+            <option>Labe</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="permis" class="form-label fw-bold">Permis</label>
+          <input required type="file" class="form-control" id="permis" name="permis">
+        </div>
+        
+        <div class="col-md-6">
+            <label for="date-debut" class="form-label fw-bold">Date de debut de la location</label>
+            <input required type="date" class="form-control" id="date-debut" name="date-debut">
+          </div>
+          <div class="col-md-6">
+            <label for="total-jours" class="form-label fw-bold">Nombre de jours total</label>
+            <select required id="total-jours" name="total-jours" class="form-select">
+              <option disabled>Selectionnée la durée totale (en jours)</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">ENVOYER</button>
+        </div>
+      </form>
+</div>
+
+{% endblock %}

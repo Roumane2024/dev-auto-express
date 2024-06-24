@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h3 class="card p-2 text-center text-white bg-success">Salut Mr/Mme {{nom}} {{prenom}}</h3>
+        <div class="alert alert-success fs-5" role="alert">
+            Votre réservation a été effectuée avec succès. <br>
+            <span>Vous avez réservé une voiture de marque {{voiture}}. </span>
+            <span>Pour une durée de {{ jours }} jour(s) à partir du {{date_debut}}</span> <br>
+            <span>Nous vous contacterons pour la suite, Merci pour votre confiance </span>
+        </div>          
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<!-- Rechercher voiture  -->
+<header class="row my-3">
+  <div class="col-md-6">
+    <a href="/" class="text-decoration-none">
+      <span class="fs-4 text-uppercase">Acheter ou Louer une voiture</span>
+    </a>
+  </div>
+  <form class="col-md-6 d-flex">
+      <input type="text" class="form-control mx-3" name="marque" placeholder="Saisir le nom d'une voiture">
+      <button class="btn btn-outline-primary">Chercher</button>
+  </form>
+</header>
+<!-- Bannière -->
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" style="height: 50vh;">
+    <div class="carousel-item active">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0e166a22-c072-43bd-8992-50d831c3db4d/dfagksy-0c0f9d63-843e-4b1a-bbb4-ed80499956ea.jpg/v1/fill/w_950,h_425,q_75,strp/location_voiture_agadir_banner_by_locationagadir_dfagksy-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDI1IiwicGF0aCI6IlwvZlwvMGUxNjZhMjItYzA3Mi00M2JkLTg5OTItNTBkODMxYzNkYjRkXC9kZmFna3N5LTBjMGY5ZDYzLTg0M2UtNGIxYS1iYmI0LWVkODA0OTk5NTZlYS5qcGciLCJ3aWR0aCI6Ijw9OTUwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.o2vNo-6S3sc-QH4qxUP70XcK3PhzeogCO3PaYVkQ0TU" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://img.freepik.com/psd-gratuit/modele-couverture-facebook-pour-location-voitures-automobile_106176-2475.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://img.lovepik.com/desgin_photo/45008/9467_detail.jpg!odetail650" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Fin Banniere  -->
+
+<div class="row">
+    {% for voiture in  liste_voiture %}
+    <div class="col-md-3 my-2">
+        <div class="card">
+            <img src="{{voiture.image.url}}" class="card-img-top" width="300px" height="180px" alt="image d'une voiture">
+            <div class="card-body text-center">
+              <div class="card-title fw-bold">{{ voiture.marque }}</div>
+              <div class="card-title text-primary">prix location : {{ voiture.prix_location }} FG</div>
+              <div class="card-title text-danger">prix vente : {{ voiture.prix_vente }} FG</div>
+              
+              <a href="{% url 'detail' voiture.id %}" class="btn btn-primary">En savoir plus</a>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+    <!-- pagination -->
+    <nav class="mt-4">
+      <ul class="pagination">
+        {% if liste_voiture.has_previous %}
+        <li class="page-item">
+          <a href="?page={{liste_voiture.previous_page_number}}" class="page-link">
+            Precedent
+          </a>
+        </li>
+        {% endif %}
+
+        <li class="page-item active">
+          <a href="" class="page-link">
+           {{liste_voiture.number}}
+          </a>
+        </li>
+
+        {% if liste_voiture.has_next %}
+        <li class="page-item">
+          <a href="?page={{liste_voiture.next_page_number}}" class="page-link">
+           Suivant
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+</div>
+{% endblock %}

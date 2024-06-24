@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h3 class="card p-2 text-center text-white bg-success">Salut Mr/Mme {{nom}} {{prenom}}</h3>
+        <div class="alert alert-success fs-5" role="alert">
+            Votre commande a été effectuée avec succès. <br>
+            <span>Vous avez commandé une voiture de marque {{voiture}}. </span>
+            <span>Nous vous contacterons sur votre numéro {{telephone}} pour valider l'achat, Merci pour votre confiance </span>
+        </div>          
+    </div>
+</div>
+{% endblock %}
