@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+    <div class="">
+        <div class="w-50 mx-auto shadow p-3 m-5 bg-light rounded">
+			{% if form.errors %}
+			<div class="alert alert-danger">
+				<strong>{{ form.errors }}</strong>
+			</div>
+			{% endif %}
+			<div class="">
+				<form class="" method="POST">
+					{% csrf_token %}
+					<h3 class="text-center m-2">INFORMATION PERONNELLE</h3>
+									
+					<div class="mb-3">
+						{{ form.username }}
+					</div>
+					<div class="mb-3">
+						{{ form.email }}
+					</div>
+					<div class="mb-3">
+						{{ form.phone }}
+					</div>
+					<div class="mb-3">
+						{{ form.password1  }}
+					</div>
+					<div class="mb-3">
+						{{ form.password2  }}
+					</div>
+									
+					<div class="text-left">
+						<button class="btn btn-primary">S'inscrire</button>
+					</div>
+
+									
+					<p class="m-2">
+						Vous avez déjà un compte ? 
+						<a href="{% url 'connexion' %}">Se Connecter</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>         
+
+{% endblock%}

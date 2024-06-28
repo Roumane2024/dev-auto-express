@@ -152,3 +152,5 @@ JAZZMIN_SETTINGS = {
 
     "user_avatar": None
 }
+
+AUTH_USER_MODEL = 'auto.User'

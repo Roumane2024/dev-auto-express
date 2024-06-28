@@ -1,7 +1,11 @@
 from django.contrib import admin
-from . models import Categorie, Voiture, Location, Vente
+from . models import Categorie, Voiture, Location, Vente, User
+
 
 #Enregistrement des tables
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email', 'phone', 'role']
+
 class AdminCategorie(admin.ModelAdmin):
     list_display= ["nom", "description"]
 
@@ -19,3 +23,5 @@ admin.site.register(Categorie, AdminCategorie)
 admin.site.register(Voiture, AdminVoiture)
 admin.site.register(Location, AdminLocation)
 admin.site.register(Vente, AdminVente)
+admin.site.register(User, UserAdmin)
+

@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Voiture, Categorie, Location, Vente
 from django.core.paginator import Paginator
-from django.contrib import messages 
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-from .models import Utilisateur
+from .models import User
+from .forms import UserResgisterFrom, UserLoginForm
+
 
 # Fonction pour afficher la page d'accueil
 def index(request):
@@ -51,7 +51,6 @@ def location(request, id):
     
     return render(request, "formulaire-location.html", contexte)
 
-
 # Fonction pour acheter une voiture
 def achat(request, id):
     # Recuperer la voiture via son id
@@ -76,7 +75,6 @@ def apropos(request):
 # Fonction pour afficher la page  contact
 def contact(request):
     return render(request, 'contact.html')
-
 
 # Fonction pour gerer la location de voiture
 def confirmationLocation(request):
@@ -133,56 +131,61 @@ def confirmationVente(request):
     
     return render(request, "confirme-achat.html", contexte)
 
+# La fonction qui permet de s'inscrire
 def inscription(request):
     if request.method=='POST':
-        nom = request.POST.get('name')
-        adresse_mail = request.POST.get('email')
-        mot_de_passe = request.POST.get('password')
-        mot_de_passe_confirmation = request.POST.get('password1')
-
-        if mot_de_passe != mot_de_passe_confirmation:
-            messages.error(request, 'Les mot de passes ne correspondent pas')
-        elif Utilisateur.objects.filter(nom=nom).exists():
-            messages.error(request, "Ce nom d'utilisateur existe déjà.")
-        elif Utilisateur.objects.filter(adresse_mail=adresse_mail).exists():
-            messages.error(request, "Cet email existe déjà.")
-
-        else:
-            return redirect("connexion.html")
-
-        context = {
-           " nom": "nom",
-            "adresse_mail": "adresse_mail",
-            "mot_de_passe" : "mot_de_passe",
-            "mot_de_passe_confirmation" : "mot_de_passe_confirmation"
-        }
-
-        messages.success(request, "Inscription reussi")
-
-    return render(request, 'inscription.html', context)
-
-
-def connexion(request):
-    if request.method == 'POST':
-
-        adresse_mail = request.POST.get('email')
-
-        mot_de_passe = request.POST.get('password') 
-
-        utilisateur= Utilisateur.objects.filter(adresse_mail=adresse_mail)
-
-        if utilisateur.exists():
-
-            utilisateur = authenticate(request, adresse_mail=adresse_mail, mot_de_passe=mot_de_passe)
-
-            if utilisateur is not None:
-
-                login(request,utilisateur)
-
-                messages.success(request, 'Vous etes connectés')
-
+        form= UserResgisterFrom(request.POST or None)
+        if form.is_valid():
+            new_user= form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f"Bienvenue {username}, votre compte a ete crée avec succes !!!")
+            new_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, new_user)
+            return redirect('connexion')
+        
     else:
-        return render(request,' connexion.html')
+        form = UserResgisterFrom()
+    context = {'form': form}
+    return render(request, 'inscription.html', context)
+ 
+
+# La fonction qui permet de se connecter
+def connexion(request):
+    if request.user.is_authenticated:
+        messages.warning(request, "Hey vous etes déjà connecté !")
+        return redirect('index')
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username=username)
+            user = authenticate( request, username=username, password=password)
+
+            if User is not None:
+                login(request, user)
+                messages.success(request, "Vous etes connecté !")
+                return redirect('index')
+            else:
+                messages.warning(request, "Nom d'utilisateur ou mot de passe incorrect.")
+        except:
+            messages.warning(request, f"Le nom d'utilisateur {username} n'existe pas")
+
+    form = UserLoginForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'connexion.html', context)
+
+     
+
+# la fonction qui permet de se déconnecter
+def deconnexion(request):
+    logout(request)
+    messages.success(request, "Vous avez été déconnecté.")
+    return redirect('connexion')
+    
 
 
 

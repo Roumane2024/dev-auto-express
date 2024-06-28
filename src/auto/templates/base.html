@@ -15,11 +15,12 @@
     <div class="container-fluid">
       <!-- Menu de navigation -->
       <nav class="py-2 border-bottom" style="background-color: darkblue;">
-            <div class="container d-flex flex-wrap">
+        <div class="container d-flex flex-wrap">
               <ul class="nav me-auto">
                 <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-white fw-bold">AUTO EXPRESS</a></li>
               </ul>
               <ul class="nav">
+                {% if request.user.is_authenticated %}
                 <li class="nav-item dropdown">
                   <a href="#" class="nav-link px-2 dropdown-toggle text-white" data-bs-toggle="dropdown">CATEGORIE</a>
                   <ul class="dropdown-menu">
@@ -33,20 +34,32 @@
                     <li><a class="dropdown-item" href="{% url 'categorie' 'Monospaces' %}">Monospaces</a></li>
                     <li><a class="dropdown-item" href="{% url 'categorie' 'CitadinesMoyennes' %}">Citadines moyennes</a></li>
                     <li><a class="dropdown-item" href="{% url 'categorie' 'PetitesCitadines' %}">Petite citadines</a></li>
-                    
-
                   </ul>
                 </li>
                 <li class="nav-item"><a href="{% url 'apropos' %}" class="nav-link px-2 text-white">A PROPOS</a></li>
                 <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link px-2 text-white">CONTACT</a></li>
+                <li class="nav-item"><a href="{% url 'deconnexion' %}" class="nav-link px-2 text-white">DECONNEXION</a></li>
+                {% else %}
+                  <li class="nav-item"><a href="{% url 'inscription' %}" class="nav-link px-2 text-white">CREER UN COMPTE</a></li>
+                  <li class="nav-item"><a href="{% url 'connexion' %}" class="nav-link px-2 text-white">SE CONNECTER</a></li>
+                {% endif %}
               </ul>
-            </div>
+        </div>
       </nav>
+
+      {% if messages %}
+        {% for  message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {{ message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+      {% endif %}
 
       {% block contenu %}
       {% endblock %}
 
-
+      {% if request.user.is_authenticated %}
       <!-- Pied de page  -->
       <div class="b-example-divider"></div>
       <div class="p-3" style="background-color: darkblue;">
@@ -99,6 +112,7 @@
           </div>
         </footer>
       </div>
+      {% endif %}
     </div>
 </body>
 </html>

@@ -1,13 +1,23 @@
-from django.db import models
+from django.db import models    
+from django.contrib.auth.models import AbstractUser
+
+#Creation de la table des utilisateurs
+class User(AbstractUser):
+    ROLES = (
+        ("CLIENT", "Client"),
+        ("ADMIN", "Admin")
+    )
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=100, unique=True)
+    phone = models.CharField(max_length=20)
+    role = models.CharField(choices=ROLES,default='CLIENT', max_length=100)
+
+    USERNAME_FIELD = 'username'
+
+    def __str__(self):
+        return self.username
 
 
-class Utilisateur(models.Model):
-    nom = models.CharField(max_length=50)
-    adresse_mail = models.CharField(max_length=100)
-    mot_de_passe = models.CharField(max_length=100)
-    mot_de_passe_confirmation = models.CharField(max_length=100)
-
-    
 
 #Creation de la table Categorie
 class Categorie(models.Model):
@@ -74,22 +84,3 @@ class Vente(models.Model):
 
     def __str__(self):
         return self.nom + self.prenom
-
-
-#Creation de la table Transaction
-# class Transaction(models.Model):
-#       type_transaction = models.BooleanField(default=False) 
-#       montant = models.FloatField()
-#       date_transaction = models.DateField()
-#       description = models.CharField(max_length=30)
-
-
-#Creation de la table employé
-# class Employé(models.Model):
-#       nom = models.CharField(max_length=100)
-#       prénom = models.CharField(max_length=30)
-#       adress = models.CharField(max_length=90)
-#       telephone = models.FloatField(max_length=20)
-#       mail = models.CharField(max_length=50)
-#       profil = models.CharField(max_length=90)
-#       mot_de_passe = models.FloatField(max_length=30)

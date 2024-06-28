@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, detail, location, achat, categorie, apropos, contact, confirmationLocation, confirmationVente, inscription, connexion
+from .views import index, detail, location, achat, categorie, apropos, contact, confirmationLocation, confirmationVente, inscription, connexion, deconnexion
 
 urlpatterns = [
     path('', index, name='index'),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('confirmation-location', confirmationLocation, name='confirmation-location'),
     path('confirmation-achat', confirmationVente, name='confirmation-achat'),
     path('inscription/', inscription, name='inscription'),
-    path('connexion/', connexion, name='connexion')
+    path('connexion/', connexion, name='connexion'),
+    path('deconnexion/', deconnexion, name='deconnexion')
 ]
